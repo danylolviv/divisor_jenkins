@@ -10,6 +10,16 @@ pipeline {
         pollSCM('H/5 * * * *')
     }
     stages {
+        stage("Preparation") {
+            steps {
+                script {
+                    // List files in the workspace
+                    sh 'ls -la'
+                    // List files in the expected directory
+                    sh 'ls -la CacheService'
+                }
+            }
+        }
         stage("Build") {
             steps {
                 script {

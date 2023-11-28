@@ -13,7 +13,9 @@ pipeline {
         stage("Preparation") {
             steps {
                 script {
+                    sh 'ls'
                     // List files in the workspace
+                    sh 'cd DivisorCounter-b02'
                     sh 'cd DivisorCounter-b02'
                     // List files in the expected directory
                     sh 'ls'

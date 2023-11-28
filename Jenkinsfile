@@ -39,8 +39,10 @@ pipeline {
         stage("Deliver") {
             steps {
                 script {
-                    // Running Docker containers
-                    sh 'docker-compose -f docker-compose.yml up -d'
+                    dir('DivisorCounter-b02') {
+                        // Run Docker Compose build command
+                        sh 'docker compose build up -d'
+                    }
                 }
                 echo "Application Delivered and Running in Docker"
             }

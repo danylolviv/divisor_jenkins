@@ -14,9 +14,9 @@ pipeline {
             steps {
                 script {
                     // List files in the workspace
-                    sh 'ls -la'
+                    sh 'cd DivisorCounter-b02'
                     // List files in the expected directory
-                    sh 'ls -la CacheService'
+                    sh 'ls'
                 }
             }
         }

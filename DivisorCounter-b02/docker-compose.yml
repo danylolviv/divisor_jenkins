@@ -1,25 +1,22 @@
-version: '3.8'
+version: "3.9"
 
 services:
+  counter-service:
+    build:
+      context: .
+      dockerfile: DivisorCounter/Dockerfile
   cache-service:
-    image: cache-service:latest
     build:
-      context: ./CacheService
-    ports:
-      - "5000:5000" # Replace with the port your CacheService listens on
-    networks:
-      - mynetwork
-
-  divisor-counter:
-    image: divisor-counter:latest
-    build:
-      context: ./DivisorCounter
-    ports:
-      - "5001:5001" # Replace with the port your DivisorCounter listens on
+      context: .
+      dockerfile: CacheService/Dockerfile
     depends_on:
-      - cache-service
-    networks:
-      - mynetwork
-
-networks:
-  mynetwork:
+      - cache-db
+    ports:
+      - "5007:80"
+  cache-db:
+    image: "mysql"
+    environment:
+      MYSQL_DATABASE: "cache-database"
+      MYSQL_USER: "div-cache"
+      MYSQL_PASSWORD: "C@ch3d1v"
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"

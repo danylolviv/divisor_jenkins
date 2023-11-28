@@ -1,11 +1,13 @@
 pipeline {
     agent any
     environment {
-        // Define environment variables if needed, for example:
+        // Define environment variables if needed
         DOCKER_IMAGE_TAG = "latest"
+        // Assuming Docker Compose is installed at this path; adjust if necessary
+        PATH = "/usr/local/bin:$PATH"
     }
     triggers {
-        pollSCM('H/5 * * * *') // Replace with your cron expression
+        pollSCM('H/5 * * * *')
     }
     stages {
         stage("Build") {
@@ -38,7 +40,7 @@ pipeline {
         always {
             // Clean up after pipeline completion
             echo "Cleaning up"
-            sh 'docker-compose -f docker-compose.yml down'
+            sh 'docker-compose -f docker-compose.yml down || true' // Ignore errors in cleanup
         }
     }
 }

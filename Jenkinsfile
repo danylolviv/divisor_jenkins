@@ -24,8 +24,7 @@ pipeline {
             steps {
                 script {
                     // Building Docker images
-                    sh 'docker build -t cache-service:${DOCKER_IMAGE_TAG} ./CacheService'
-                    sh 'docker build -t divisor-counter:${DOCKER_IMAGE_TAG} ./DivisorCounter'
+                    sh docker compose build
                 }
                 echo "Docker Images Built"
             }

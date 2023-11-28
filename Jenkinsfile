@@ -22,15 +22,16 @@ pipeline {
                 }
             }
         }
-        stage("Build") {
-            steps {
-                script {
-                    // Building Docker images
-                    sh 'cd DivisorCounter-b02'
-                    sh 'docker compose build'
+        stages {
+            stage('Build') {
+                steps {
+                    dir('DivisorCounter-b02') {
+                        // Run Docker Compose build command
+                        sh 'docker compose build'
+                    }
                 }
-                echo "Docker Images Built"
             }
+            // Add additional stages as needed
         }
         stage("Test") {
             steps {

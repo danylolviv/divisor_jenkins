@@ -26,7 +26,8 @@ pipeline {
             steps {
                 script {
                     // Building Docker images
-                    sh docker compose build
+                    sh 'cd DivisorCounter-b02'
+                    sh 'docker compose build'
                 }
                 echo "Docker Images Built"
             }

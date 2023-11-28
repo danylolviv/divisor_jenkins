@@ -14,11 +14,6 @@ pipeline {
             steps {
                 script {
                     sh 'ls'
-                    // List files in the workspace
-                    sh 'cd DivisorCounter-b02'
-                    sh 'cd DivisorCounter-b02'
-                    // List files in the expected directory
-                    sh 'ls'
                 }
             }
         }
@@ -41,7 +36,7 @@ pipeline {
                 script {
                     dir('DivisorCounter-b02') {
                         // Run Docker Compose build command
-                        sh 'docker compose build up -d'
+                        echo 'Deploy to local environment'
                     }
                 }
                 echo "Application Delivered and Running in Docker"

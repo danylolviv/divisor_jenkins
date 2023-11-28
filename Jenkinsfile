@@ -22,16 +22,13 @@ pipeline {
                 }
             }
         }
-        stages {
-            stage('Build') {
-                steps {
-                    dir('DivisorCounter-b02') {
-                        // Run Docker Compose build command
-                        sh 'docker compose build'
-                    }
+        stage('Build') {
+            steps {
+                dir('DivisorCounter-b02') {
+                    // Run Docker Compose build command
+                    sh 'docker compose build'
                 }
             }
-            // Add additional stages as needed
         }
         stage("Test") {
             steps {
